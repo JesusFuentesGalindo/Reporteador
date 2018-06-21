@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Alta Solicitud INC</title>
+	</head>
+	
+	<body>
+		<div id="principal">
+			
+			<header>
+				<h1>Alta solicitud INC</h1>
+			</header>
+			
+			<form>
+				<fieldset>
+					<legend>Información del INC:</legend>
+					
+					<label>INC:
+						<input type="text" name="idIncidente" size="20" maxlength="15" />
+					</label>
+					
+					<label>INC Padre:
+						<input type="text" name="incPadre" size="20" maxlength="15" />
+					</label>
+					
+					<fieldset>
+						<legend>Asociación</legend>
+						<input type="radio" name="asociacion" value="Sin Relación" checked />Sin Relación
+						<input type="radio" name="asociacion" value="Padre" />Padre
+						<input type="radio" name="asociacion" value="Hijo" />Hijo
+					</fieldset>
+					
+					<fieldset>
+						<legend>Tipo de informe</legend>
+						<input type="radio" name="tipoInforme" value="Reactivo" checked />Reactivo
+						<input type="radio" name="tipoInforme" value="Proactivo" />Proactivo
+						<input type="radio" name="tipoInforme" value="Requerimiento" />Requerimiento
+					</fieldset>
+					
+					<fieldset>
+						<legend>Criticidad</legend>
+						<input type="radio" name="criticidad" value="Crítica" checked />Crítica
+						<input type="radio" name="criticidad" value="Alta" />Alta
+						<input type="radio" name="criticidad" value="Media" />Media
+						<input type="radio" name="criticidad" value="Baja" />Baja
+					</fieldset>
+					
+					<fieldset>
+						<legend>Prioridad</legend>
+						<input type="radio" name="prioridad" value="1" checked />1
+						<input type="radio" name="prioridad" value="2" />2
+						<input type="radio" name="prioridad" value="3" />3
+						<input type="radio" name="prioridad" value="4" />4
+					</fieldset>
+					
+					<label>Tipo de Problema:
+						<input type="text" name="tipoProblema" size="40" maxlength="60" />
+					</label>
+					
+					<label>Fecha-Hora de Inicio de la Falla:
+						<input type="datetime-local" name="inicioAfectacionFalla"/>
+					</label>
+					
+					<label>Fecha-Hora de Fin de la Falla:
+						<input type="datetime-local" name="finAfectacionFalla" />
+					</label>
+					
+					<label>Causa de la Falla:
+						<input type="text" name="causa" size="50" maxlength="200" />
+					</label>
+					
+					<label>Resolución de la Falla:
+						<input type="text" name="resolucion" size="50" maxlength="200"/>
+					</label>
+					
+				</fieldset>
+			</form>
+			
+		</div>
+	</body>
+</html>
