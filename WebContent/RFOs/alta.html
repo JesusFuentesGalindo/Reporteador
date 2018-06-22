@@ -12,17 +12,18 @@
 				<h1>Alta solicitud INC</h1>
 			</header>
 			
-			<form >
+			<form action="../php/ingresarINC.php" method="post">
+			
 				<fieldset>
 					<legend>Información del INC:</legend>
 					
-					<label>INC:
-						<input type="text" name="idIncidente" size="20" maxlength="15" />
-					</label>
+					<p><label>INC:
+						<input type="text" name="idIncidente" size="20" maxlength="15" required="required" autofocus="autofocus" />
+					</label></p>
 					
-					<label>INC Padre:
+					<p><label>INC Padre:
 						<input type="text" name="incPadre" size="20" maxlength="15" />
-					</label>
+					</label></p>
 					
 					<fieldset>
 						<legend>Asociación</legend>
@@ -54,27 +55,66 @@
 						<input type="radio" name="prioridad" value="4" />4
 					</fieldset>
 					
-					<label>Tipo de Problema:
-						<input type="text" name="tipoProblema" size="40" maxlength="60" />
-					</label>
+					<p><label>Tipo de Problema:
+						<input type="text" name="tipoProblema" required="required" size="40" maxlength="60" />
+					</label></p>
 					
-					<label>Fecha-Hora de Inicio de la Falla:
-						<input type="datetime-local" name="inicioAfectacionFalla"/>
-					</label>
+					<p><label>Fecha-Hora de Inicio de la Falla:
+						<input type="datetime-local" name="inicioAfectacionFalla" required="required" />
+					</label></p>
 					
-					<label>Fecha-Hora de Fin de la Falla:
-						<input type="datetime-local" name="finAfectacionFalla" />
-					</label>
+					<p><label>Fecha-Hora de Fin de la Falla:
+						<input type="datetime-local" name="finAfectacionFalla" required="required" />
+					</label></p>
 					
-					<label>Causa de la Falla:
-						<input type="text" name="causa" size="50" maxlength="200" />
-					</label>
+					<p><label>Causa de la Falla:
+						<textarea name="causa" required="required" rows="5" cols="100" maxlength="200"></textarea>
+					</label></p>
 					
-					<label>Resolución de la Falla:
-						<input type="text" name="resolucion" size="50" maxlength="200"/>
-					</label>
+					<p><label>Resolución de la Falla:
+						<textarea name="resolucion" rows="5" required="required" cols="100" maxlength="200"></textarea>
+					</label></p>
+					
+					<select name="cierreImputable">
+						<option value="Bestel" selected>Bestel</option>
+						<option value="Cliente">Cliente</option>
+					</select>
+					
+					<p><label>Fecha-Hora de Inicio del INC:
+						<input type="datetime-local" name="inicioAfectacionInc" required="required" />
+					</label></p>
+					
+					<p><label>Fecha-Hora de Fin del INC:
+						<input type="datetime-local" name="finAfectacionInc" required="required"/>
+					</label></p>
+					
+					<p><select name="estadoProblema">
+						<option value="Cerrado" selected>Cerrado</option>
+						<option value="Abierto">Abierto</option>
+						<option value="Asignado">Asignado</option>
+						<option value="En Curso">En Curso</option>
+						<option value="Pendiente">Pendiente</option>
+						<option value="Resuelto">Resuelto</option>
+					</select></p>
+					
+					<p><select name="areaResolutora">
+						<option value="Transporte">Transporte</option>
+						<option value="Tier1">TIER 1</option>
+						<option value="Siar">SIAR</option>
+						<option value="Telefonia">Telefonía</option>
+					</select></p>
+					
+					<p><label>Proveedor:
+						<input type="text" name="proveedor" size="20" maxlength="50" />
+					</label></p>
+					
+					<p><label>Afectacón:
+						<input type="text" name="afectacion" required="required" size="20" maxlength="60" />
+					</label></p>
 					
 				</fieldset>
+				
+				<input type="submit" value="Guardar" /><input type="reset" value="borrar" />
 			</form>
 			
 		</div>
