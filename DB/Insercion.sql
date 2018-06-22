@@ -1,29 +1,31 @@
+USE nmc;
 /*Ingresa información del INC*/
 INSERT INTO incidentes(idIncidente, incPadre, asociacion, tipoInforme, criticidad, prioridad, tipoProblema,
     inicioAfectacionFalla, finAfectacionFalla, causa, resolucion)
-VALUES('INC000000018692', '', 'Sin Relación', 'Reactivo', 'Alta', '2', 'Enlace Fuera de Servicio', 
-	'2018/06/14 15:02', '2018/06/14 19:24',
-    'Se detectó E1 conmutado a ruta de respaldo entre Chetumal y Quintana Roo ocasionando que el enlace se quedara aislado.', 
-    'Se conmuta manualmente enlace E1 a ruta de trabajo y se reconfigura como revertido para que la conmutación  se realice en automático.'
+VALUES('INC000000018676', 'INC000000019331', 'Hijo', 'Reactivo', 'Alta', '2', 'Enlace Fuera de Servicio', 
+	'2018/06/19 02:48', '2018/06/15 14:42',
+    'Se detectó corte de fibra óptica en trayectoria de GTAC Cd. Juarez-Moctezuma la cual recae en OPGW responsabilidad de CFE, se desconoce la causa del corte.', 
+    'Se procedió con la generación emergente de una trayectoria de respaldo por trayectoria IZZI y se valida el restablecimiento del servicio, manteniéndose estable.'
 );
 
 /*Ingresa información del cliente*/
 INSERT INTO clientes(idCliente, nombreCliente, giro)
-VALUES(32807, 'Secretaria de Comunicaciones y Transportes Centro SCT Quintana Roo', 'GOBIERNO');
+VALUES(31188, 'Verizon Business', 'INICIATIVA PRIVADA');
 
 /*Ingresa información del servicio*/
 INSERT INTO servicios(circuito, idCliente)
-VALUES('9382-TKD-001', 32807);
+VALUES('7122-CCH-964', 31188);
 
 /*Relaciona el INC y el servicio*/
 INSERT INTO incidenteServicio(idIncidente, circuito)
-VALUES('INC000000018692', '9382-TKD-001');
+VALUES('INC000000018676', '7122-CCH-964');
 
 /*Ingresa la información del proceso de creación del RFO*/
 INSERT INTO rfo(idRfo, idIncidente, estatus, fechaSolicitud, responsableSolicitud, fechaValidacion, 
 	responsableEnvioValidacion, responsableValidacion, fechaVistoBueno, responsableVistoBueno, 
 	fechaEnvioRfo, responsableEnvioRfo, medio, area, observaciones)
-VALUES('RFO000000018692', 'INC000000018692', 'En Revisión', '2018/06/19 16:56', 'Jaime Velasco Guzman <jvelascogu@bestel.com.mx>',
-	'2018/06/19 19:42', 'Jose De Jesus Fuentes Galindo <p-jdfuentes@bestel.com.mx>', 'Oscar Leonardo Rubio Ontiveros <olrubioo@bestel.com.mx>',
-    '1900/01/01 00:00', '', '1900/01/01 00:00', '', 'Mail', 'Tier1', NULL);
+VALUES('RFO000000018676', 'INC000000018676', 'En Revisión', '2018/06/21 10:20', 'Oscar Javier Saucedo Pedraza <ojsaucedop@bestel.com.mx>',
+	'2018/06/21 19:34', 'Jose De Jesus Fuentes Galindo <p-jdfuentes@bestel.com.mx>', 'Alberto Antonio Suppen Dimas <aasuppendi@bestel.com.mx>',
+    '1900/01/01 00:00', '', '1900/01/01 00:00', '', 'Mail', 'Transporte', NULL);
 
+    
