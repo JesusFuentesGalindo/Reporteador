@@ -41,7 +41,7 @@
 					
 					<fieldset>
 						<legend>Criticidad</legend>
-						<input type="radio" name="criticidad" value="Crítica" checked />Crítica
+						<input type="radio" name="criticidad" value="Critica" checked />Crítica
 						<input type="radio" name="criticidad" value="Alta" />Alta
 						<input type="radio" name="criticidad" value="Media" />Media
 						<input type="radio" name="criticidad" value="Baja" />Baja
@@ -59,20 +59,12 @@
 						<input type="text" name="tipoProblema" required="required" size="40" maxlength="60" />
 					</label></p>
 					
-					<p><label>Fecha-Hora de Inicio de la Falla:
-						<input type="datetime-local" name="inicioAfectacionFalla" required="required" />
-					</label></p>
-					
-					<p><label>Fecha-Hora de Fin de la Falla:
-						<input type="datetime-local" name="finAfectacionFalla" required="required" />
-					</label></p>
-					
 					<p><label>Causa de la Falla:
-						<textarea name="causa" required="required" rows="5" cols="100" maxlength="200"></textarea>
+						<textarea name="causa" required="required" rows="5" cols="100" maxlength="8000"></textarea>
 					</label></p>
 					
 					<p><label>Resolución de la Falla:
-						<textarea name="resolucion" rows="5" required="required" cols="100" maxlength="200"></textarea>
+						<textarea name="resolucion" rows="5" required="required" cols="100" maxlength="8000"></textarea>
 					</label></p>
 					
 					<select name="cierreImputable">
