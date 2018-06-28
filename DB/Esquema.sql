@@ -20,8 +20,16 @@ CREATE TABLE incidentes(
     PRIMARY KEY(idIncidente)
 );
 
+CREATE TABLE clientes(
+	idCliente INT NOT NULL,
+    nombreCliente VARCHAR(200) NOT NULL,
+    giro VARCHAR(50) NOT NULL,
+    sla INT NOT NULL,
+    empresaGestora ENUM('Bestel', 'Metrored') NOT NULL,
+    PRIMARY KEY(idCliente)
+);
+
 CREATE TABLE servicios(
-	
     circuito VARCHAR(100) NOT NULL,
     idCliente INT NOT NULL,
     servicio VARCHAR(100) NOT NULL,
@@ -29,7 +37,6 @@ CREATE TABLE servicios(
     circuitoM6 VARCHAR(100) NULL,
     circuitoSolar VARCHAR(100) NULL,
     circuitoSicab VARCHAR(100) NULL,
-    segmento VARCHAR(100) NOT NULL,
     estadoDestino VARCHAR(100) NOT NULL,
     sitio VARCHAR(100) NULL,
     PRIMARY KEY(circuito),
@@ -46,31 +53,23 @@ CREATE TABLE incidenteServicio(
     FOREIGN KEY(circuito) REFERENCES servicios(circuito) ON UPDATE CASCADE
 );
 
-CREATE TABLE clientes(
-	idCliente INT NOT NULL,
-    nombreCliente VARCHAR(200) NOT NULL,
-    giro ENUM('WHOLESALE', 'INICIATIVA PRIVADA', 'GOBIERNO') NOT NULL,
-    sla INT NOT NULL,
-    empresaGestora ENUM('Bestel', 'Metrored') NOT NULL,
-    PRIMARY KEY(idCliente)
-);
+
 
 CREATE TABLE rfo(
 	idRfo VARCHAR(15) NOT NULL,
-    idIncidente VARCHAR(15) NOT NULL,
-    estatus ENUM('Pendiente', 'En Revisión', 'N/A', 'Enviado') NOT NULL,
+    idIncidente VARCHAR(15) NOT NULL UNIQUE,
+    estatus ENUM('Pendiente', 'En Revision', 'N/A', 'Enviado') NOT NULL,
     fechaSolicitud DATETIME NOT NULL,
     responsableSolicitud VARCHAR(150) NOT NULL,
-    fechaEnvioValidacion DATETIME NOT NULL,
-    responsableEnvioValidacion VARCHAR(150) NOT NULL,
-    responsableValidacion VARCHAR(150) NOT NULL,
-    fechaVistoBueno DATETIME NOT NULL,
-    responsableVistoBueno VARCHAR(150),
-    fechaEnvioRfo DATETIME NOT NULL,
-    responsableEnvioRfo VARCHAR(150),
-    medio ENUM('Mail', 'Teléfono') NOT NULL,
-    area ENUM('Transporte', 'Tier1', 'Siar', 'Telefonia') NOT NULL,
+    fechaEnvioValidacion DATETIME NULL,
+    responsableEnvioValidacion VARCHAR(150) NULL,
+    responsableValidacion VARCHAR(150) NULL,
+    fechaVistoBueno DATETIME NULL,
+    responsableVistoBueno VARCHAR(150) NULL,
+    fechaEnvioRfo DATETIME NULL,
+    responsableEnvioRfo VARCHAR(150) NULL,
+    medio ENUM('Mail', 'Telefono') NOT NULL,
     observaciones VARCHAR(250) NULL,
-    PRIMARY KEY(idRfo, idIncidente),
+    PRIMARY KEY(idRfo),
     FOREIGN KEY(idIncidente) REFERENCES incidentes(idIncidente)
 );
