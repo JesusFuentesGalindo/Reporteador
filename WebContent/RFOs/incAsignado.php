@@ -14,7 +14,7 @@
 		  $supervisor=$_GET['usuario'];
 		  
 		  $link=mysqli_connect('localhost', 'administrador_local', 'AdminMySql', 'nmc');
-		  $query="SELECT idIncidente FROM incidentes WHERE usuario='$supervisor'";
+		  $query="SELECT idIncidente FROM incidentes WHERE usuario='$supervisor', tipoInforme='Reactivo'";
 		  
 		  if($sentencia=mysqli_prepare($link, $query)){
 		      

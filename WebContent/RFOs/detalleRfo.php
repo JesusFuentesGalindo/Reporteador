@@ -20,19 +20,25 @@
                 if($sentencia=mysqli_prepare($link, $query)){
                     mysqli_stmt_execute($sentencia);
                     mysqli_stmt_bind_result($sentencia, $incPadre, $causa, $resolucion, $inicioFalla, $finFalla);
-                    $row=mysqli_stmt_fetch($sentencia);
-                    echo "<form method='post' action=''>";
-                    echo "<label>INC:<input type='text' readonly='readonly' value='$inc' /></label>";
-                    echo "<label>INC Padre:<input type='text' readonly='readonly' value='$incPadre' /></label>";
-                    echo "<label>Causa:<textarea rows='3'>$causa</textarea></label>";
-                    echo "<label>Resolución:<textarea rows='3'>$resolucion</textarea></label>";
+                    
+                    
                     
                     $reg=0;
-                    while($row>=$reg){
+                    while($row=mysqli_stmt_fetch($sentencia)){
                         $reg++;
-                        echo "<label>Circuito:<input type='text'/></label>";
-                        echo "<label>Inicio Falla:<input type='datetime-local' value='$inicioFalla' /></label>";
-                        echo "<label>Fin Falla:<input type='datetime-local' value='$finFalla' /></label>"; 
+                        if($reg==1){
+                        echo "<form method='post' action='../validarRfo.php/?supervisor=$supervisor'>";
+                        echo "<label>INC:<input type='text' name='idIncidente' readonly='readonly' value='$inc' /></label>";
+                        echo "<label>INC Padre:<input type='text' readonly='readonly' value='$incPadre' /></label>";
+                        echo "<label>Causa:<textarea name='causa' rows='3'>$causa</textarea></label>";
+                        echo "<label>Resolución:<textarea name='resolucion' rows='3'>$resolucion</textarea></label>";
+                        }
+                        
+                        
+                        echo "<label>Circuito:<input type='text' name='cirucuito'/></label>";
+                        echo "<label>Inicio Falla:<input type='datetime-local' name='inicioFalla' value='$inicioFalla' /></label>";
+                        echo "<label>Fin Falla:<input type='datetime-local' name='finFalla' value='$finFalla' /></label>";
+                        echo "<input type='submit' value='Validar' />";
                     }
                     echo "</form>";
                     mysqli_stmt_close($sentencia);
