@@ -13,16 +13,17 @@
 		<?php
 		  $supervisor=$_GET['usuario'];
 		  
-		  $link=mysqli_connect('localhost', 'administrador_local', 'AdminMySql', 'nmc');
-		  $query="SELECT idIncidente FROM incidentes WHERE usuario='$supervisor', tipoInforme='Reactivo'";
+		  $link=mysqli_connect('localhost', 'administradorlocal', 'AdminJesus3010', 'nmc');
+		  mysqli_set_charset($link, 'utf8');
+		  $query="SELECT idIncidente, estatus, DATEDIFF(NOW(),fechaEnvioValidacion) AS diasValidacion FROM rfo WHERE responsableValidacion='aasuppendi@bestel.com.mx' and estatus='En Revision'";
 		  
 		  if($sentencia=mysqli_prepare($link, $query)){
 		      
 		      mysqli_stmt_execute($sentencia);
-		      mysqli_stmt_bind_result($sentencia, $inc);
+		      mysqli_stmt_bind_result($sentencia, $inc, $estatus, $diasValidacion);
 		      
 		      while (mysqli_stmt_fetch($sentencia)){
-		          echo "<p><a href='../detalleRfo.php/?inc=$inc&supervisor=$supervisor'>$inc</a></p>";
+		          echo "<p><a href='../detalleRfo.php/?inc=$inc&supervisor=$supervisor'>$inc</a> $estatus $diasValidacion dias</p>";
 		      }
 		      mysqli_stmt_close($sentencia);
 		  }

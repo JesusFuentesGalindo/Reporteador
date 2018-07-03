@@ -58,7 +58,7 @@ CREATE TABLE incidenteServicio(
 CREATE TABLE rfo(
 	idRfo VARCHAR(15) NOT NULL,
     idIncidente VARCHAR(15) NOT NULL UNIQUE,
-    estatus ENUM('Pendiente', 'En Revision', 'N/A', 'Enviado') NOT NULL,
+    estatus ENUM('Pendiente', 'En Revision', 'N/A', 'Enviado', 'Validado', 'Solicitud Cambios') NOT NULL,
     fechaSolicitud DATETIME NOT NULL,
     responsableSolicitud VARCHAR(150) NOT NULL,
     fechaEnvioValidacion DATETIME NULL,
@@ -69,7 +69,15 @@ CREATE TABLE rfo(
     fechaEnvioRfo DATETIME NULL,
     responsableEnvioRfo VARCHAR(150) NULL,
     medio ENUM('Mail', 'Telefono') NOT NULL,
-    observaciones VARCHAR(250) NULL,
+    observaciones VARCHAR(8000) NULL,
     PRIMARY KEY(idRfo),
     FOREIGN KEY(idIncidente) REFERENCES incidentes(idIncidente)
 );
+CREATE TABLE usuarios(
+	usuario VARCHAR(150) NOT NULL,
+    contrasena VARCHAR(10) NOT NULL,
+    PRIMARY KEY (usuario)
+);
+
+ALTER TABLE rfo
+MODIFY estatus ENUM('Pendiente', 'En Revision', 'N/A', 'Enviado', 'Validado', 'Solicitud Cambios') NOT NULL;

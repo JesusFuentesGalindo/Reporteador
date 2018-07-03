@@ -34,7 +34,8 @@
     		     $usuario=$_POST['usuario'];
     			 $contrasena=$_POST['contrasena'];
     			 
-    			 $link=mysqli_connect('localhost', 'administrador_local', 'AdminMySql', 'nmc');
+    			 $link=mysqli_connect('localhost', 'administradorlocal', 'AdminJesus3010', 'nmc');
+    			 mysqli_set_charset($link, 'utf8');
     			 
     			 if (mysqli_connect_errno()) {
     			     printf("Falló la conexión: %s\n", mysqli_connect_error());

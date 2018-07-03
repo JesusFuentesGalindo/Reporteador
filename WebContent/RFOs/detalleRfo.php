@@ -14,12 +14,16 @@
                 $inc=$_GET['inc'];
                 $supervisor=$_GET['supervisor'];
                 
-                $link=mysqli_connect('localhost', 'administrador_local', 'AdminMySql', 'nmc');
-                $query="SELECT incPadre, causa, resolucion, inicioAfectacionInc, finAfectacionInc FROM incidentes WHERE idIncidente ='$inc'";
+                $link=mysqli_connect('localhost', 'administradorlocal', 'AdminJesus3010', 'nmc');
+                mysqli_set_charset($link, 'utf8');
+                $query="SELECT incPadre, causa, resolucion, 
+                incidenteServicio.circuito, incidenteServicio.inicioAfectacionFalla,
+                incidenteServicio.finAfectacionFalla FROM incidentes, incidenteServicio WHERE incidentes.idIncidente = incidenteServicio.idIncidente
+                AND incidentes.idIncidente='$inc'";
                 
                 if($sentencia=mysqli_prepare($link, $query)){
                     mysqli_stmt_execute($sentencia);
-                    mysqli_stmt_bind_result($sentencia, $incPadre, $causa, $resolucion, $inicioFalla, $finFalla);
+                    mysqli_stmt_bind_result($sentencia, $incPadre, $causa, $resolucion, $circuito, $inicioFalla, $finFalla);
                     
                     
                     
@@ -35,7 +39,7 @@
                         }
                         
                         
-                        echo "<label>Circuito:<input type='text' name='cirucuito'/></label>";
+                        echo "<label>Circuito:<input type='text' name='cirucuito' value='$circuito' /></label>";
                         echo "<label>Inicio Falla:<input type='datetime-local' name='inicioFalla' value='$inicioFalla' /></label>";
                         echo "<label>Fin Falla:<input type='datetime-local' name='finFalla' value='$finFalla' /></label>";
                         echo "<input type='submit' value='Validar' />";
