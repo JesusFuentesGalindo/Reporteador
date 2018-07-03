@@ -18,8 +18,6 @@
     
     $link=mysqli_connect('localhost', 'administrador_local', 'AdminMySql', 'nmc');
     
-    /*$query="INSERT INTO incidentes(`idIncidente`, `incPadre`, `asociacion`, `tipoInforme`, `criticidad`, `prioridad`, `tipoProblema`, `causa`, `resolucion`, `cierreImputable`, `inicioAfectacionInc`, `finAfectacionInc`, `estadoProblema`, `AreaResolutora`, `proveedor`, `afectacion`)
-    VALUES('$idIncidente', '$incPadre', '$asociacion', '$tipoInforme', '$criticidad', '$prioridad', '$tipoProblema', '$causa', '$resolucion', '$cierreImputable', '$inicioAfectacionInc', '$finAfectacionInc', '$estadoProblema', '$areaResolutora', '$proveedor', '$afectacion');";*/
     
     $query="INSERT INTO incidentes(`idIncidente`, `incPadre`, `asociacion`, `tipoInforme`, `criticidad`, `prioridad`, `tipoProblema`, `causa`, `resolucion`, `cierreImputable`, `inicioAfectacionInc`, `finAfectacionInc`, `estadoProblema`, `AreaResolutora`, `proveedor`, `afectacion`)
     VALUES('$idIncidente', '$incPadre', '$asociacion', '$tipoInforme', '$criticidad', '$prioridad', '$tipoProblema', '$causa', '$resolucion', '$cierreImputable', '$inicioAfectacionInc', '$finAfectacionInc', '$estadoProblema', '$areaResolutora', '$proveedor', '$afectacion');";

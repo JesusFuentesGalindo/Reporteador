@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="author" content="Jose de Jesus Fuentes Galindo" />
+		<title>Control RFO</title>
+	</head>
+	
+	<body>
+		<div id="principal">
+			<header>
+				<h1>Control RFOs</h1>
+			</header>
+			
+			<section>
+				<form action="" method="post">
+					
+					<fieldset>
+						<legend>RFO</legend>
+						<label>id de FRO:
+							<input type="text" name="idRFO" maxlength="15"/>
+						</label>
+						<label>id de Incidente:
+							<input type="text" name="idIncidente" maxlength="15" />
+						</label>
+						
+						<label>Estatus:
+							<select name="estatus">
+								<option value="Pendiente" selected>Pendiente</option>
+								<option value="En Revision">En Revisión</option>
+								<option value="N/A">N/A</option>
+							</select>
+						</label>
+						
+						<label>Medio:
+							<select name="medio">
+								<option value="Mail" selected>Mail</option>
+								<option value="Telefono">Teléfono</option> 
+							</select>
+						</label>
+					</fieldset>
+					
+					<fieldset>
+						<legend>Solicitud</legend>
+						<label>Fecha de Solicitud:
+							<input type="datetime-local" name="fechaSolicitud" />
+						</label>
+						<label>Responsable de la Solicitud:
+							<input type="text" name="responsableSolicitud" />
+						</label>
+					</fieldset>
+					
+					<fieldset>
+						<legend>Validación</legend>
+						
+						<label>Responsable del Envío a Validación:
+							<input type="text" name="responsableEnvioValidacion" />
+						</label>
+						<label>Fecha del Envío a Validación:
+							<input type="datetime-local" name="fechaEnvioValidacion" />
+						</label>
+						<label>Responsable de la Validación:
+							<input type="text" name="responsableValidacion" />
+						</label>
+					</fieldset>
+					
+					<fieldset>
+						<legend>Visto Bueno</legend>
+						<label>Responsable Visto Bueno:
+							<input type="text" name="responsableVistoBueno" />
+						</label>
+						<label>Fecha Visto Bueno
+							<input type="datetime-local" name="fechaVistoBueno" />
+						</label>
+					</fieldset>
+					
+					<fieldset>
+						<legend>Envío</legend>
+						<label>Responsable del Envío del RFO:
+							<input type="text" name="responsableEnvioRfo" />
+						</label>
+						<label>Fecha de Envio dle RFO:
+							<input type="datetime-local" name="fechaEnvioRfo" />
+						</label>
+					</fieldset>
+					
+					<label>Comentarios
+						<textarea rows="3" name="observaciones"></textarea>
+					</label>
+					
+					<input type="submit" Value="Enviar" />
+				</form>
+			</section>
+		</div>
+	
+	</body>
+</html>
