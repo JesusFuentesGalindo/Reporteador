@@ -16,17 +16,30 @@
     $proveedor=$_POST['proveedor'];
     $afectacion=$_POST['afectacion'];
     
-    $link=mysqli_connect('localhost', 'administrador_local', 'AdminMySql', 'nmc');
+    /*----Circuito-----*/
+    $circuito=$_POST['circuito'];
+    $inicioAfectacionFalla=$_POST['inicioAfectacionFalla'];
+    $finAfectacionFalla=$_POST['finAfectacionFalla'];
     
     
+    $link=mysqli_connect('localhost', 'administrador', 'Nmc_Admin_01', 'nmc');
+    
+       
     $query="INSERT INTO incidentes(`idIncidente`, `incPadre`, `asociacion`, `tipoInforme`, `criticidad`, `prioridad`, `tipoProblema`, `causa`, `resolucion`, `cierreImputable`, `inicioAfectacionInc`, `finAfectacionInc`, `estadoProblema`, `AreaResolutora`, `proveedor`, `afectacion`)
     VALUES('$idIncidente', '$incPadre', '$asociacion', '$tipoInforme', '$criticidad', '$prioridad', '$tipoProblema', '$causa', '$resolucion', '$cierreImputable', '$inicioAfectacionInc', '$finAfectacionInc', '$estadoProblema', '$areaResolutora', '$proveedor', '$afectacion');";
     $resultado=mysqli_query($link, $query);
     
+    $query="INSERT INTO incidenteServicio(idIncidente, circuito, inicioAfectacionFalla, finAfectacionFalla)
+    VALUES($idIncidente, $circuito, $inicioAfectacionFalla, $finAfectacionFalla)";
+    $resultado=mysqli_query($link, $query);
+    
     //mysqli_free_result($resultado);
+    $error=mysqli_error($link);
     mysqli_close($link);
     
-    header("Location: ../RFOs/circuitos.html");
+    echo $error;
+    
+    header("Location: /RFOs/Form/controlRfo.html");
     
     /*echo "$idIncidente <br />";
     echo "$incPadre<br />";

@@ -12,7 +12,7 @@
 				<h1>Alta solicitud INC</h1>
 			</header>
 			
-			<form action="./ingresarINC.php" method="post">
+			<form action="../php/ingresarINC.php" method="post">
 			
 				<fieldset>
 					<legend>Información del INC:</legend>
@@ -27,7 +27,7 @@
 					
 					<fieldset>
 						<legend>Asociación</legend>
-						<input type="radio" name="asociacion" value="Sin Relación" checked />Sin Relación
+						<input type="radio" name="asociacion" value="Sin Relacion" checked />Sin Relación
 						<input type="radio" name="asociacion" value="Padre" />Padre
 						<input type="radio" name="asociacion" value="Hijo" />Hijo
 					</fieldset>
@@ -73,11 +73,11 @@
 					</select>
 					
 					<p><label>Fecha-Hora de Inicio del INC:
-						<input type="datetime-local" name="inicioAfectacionInc" required="required" />
+						<input type="text" name="inicioAfectacionInc" required="required" />
 					</label></p>
 					
 					<p><label>Fecha-Hora de Fin del INC:
-						<input type="datetime-local" name="finAfectacionInc" required="required"/>
+						<input type="text" name="finAfectacionInc" required="required"/>
 					</label></p>
 					
 					<p><select name="estadoProblema">
@@ -103,6 +103,19 @@
 					<p><label>Afectacón:
 						<input type="text" name="afectacion" required="required" size="20" maxlength="60" />
 					</label></p>
+					
+					<fieldset>
+						<legend>Circuito</legend>
+						<label>Circuito:
+							<input type="text" name="circuito" required="required" />
+						</label>
+						<label>Inicio de la Afectación:
+							<input type="text" name="inicioAfectacionFalla" />
+						</label>
+						<label>Fin de la Afectación:
+							<input type="text" name="finAfectacionFalla" />
+						</label>
+					</fieldset>
 					
 				</fieldset>
 				

@@ -79,5 +79,3 @@ CREATE TABLE usuarios(
     PRIMARY KEY (usuario)
 );
 
-ALTER TABLE rfo
-MODIFY estatus ENUM('Pendiente', 'En Revision', 'N/A', 'Enviado', 'Validado', 'Solicitud Cambios') NOT NULL;

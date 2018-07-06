@@ -13,8 +13,8 @@
 		<?php
 		  $supervisor=$_GET['usuario'];
 		  
-		  $link=mysqli_connect('localhost', 'administradorlocal', 'AdminJesus3010', 'nmc');
-		  mysqli_set_charset($link, 'utf8');
+		  $link=mysqli_connect('localhost', 'administrador', 'Nmc_Admin_01', 'nmc');
+		  mysqli_set_charset($link, 'utf8_general_ci');
 		  $query="SELECT idIncidente, estatus, DATEDIFF(NOW(),fechaEnvioValidacion) AS diasValidacion FROM rfo WHERE responsableValidacion='aasuppendi@bestel.com.mx' and estatus='En Revision'";
 		  
 		  if($sentencia=mysqli_prepare($link, $query)){

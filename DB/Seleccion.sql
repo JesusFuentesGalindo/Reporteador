@@ -9,8 +9,32 @@ AND incidentes.idIncidente = incidenteServicio.idIncidente
 AND incidenteServicio.circuito=servicios.circuito
 AND servicios.idCliente = clientes.idCliente;
 
-SELECT *
-FROM clientes;
+
+
+INSERT INTO participacionRfo(idRfo, usuario, participacion, fecha, observaciones)
+SELECT idRfo, responsableEnvioRfo, 'Envio RFO', fechaEnvioRfo, null
+FROM rfo
+WHERE NOT ISNULL(responsableEnvioRfo);
+
+UPDATE participacionRfo
+SET participacion='Envio RFO'
+WHERE usuario='p-jdfuentes@bestel.com.mx'
+AND participacion='Visto Bueno RFO';
+
+SELECT * FROM participacionRfo;
+
+
+INSERT IGNORE INTO usuarios(usuario, contrasena, nombre, puesto, area)
+SELECT DISTINCT responsableVistoBueno, '1234', 'Generico', 'Generico', 'Generico'
+FROM rfo
+WHERE NOT ISNULL(responsableValidacion);
+
+UPDATE rfo
+SET responsableEnvioRfo='dudiazg@bestel.com.mx'
+WHERE responsableEnvioRfo='David Ulises Diaz Garcilazo <dudiazg@bestel.com.mx>';
 
 SELECT *
-FROM incidentes;
+FROM rfo;
+
+SELECT *
+FROM usuarios;
