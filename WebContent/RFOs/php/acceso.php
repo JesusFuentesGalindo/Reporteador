@@ -5,6 +5,7 @@
 		<meta name="author" content="Jose de Jesus Fuentes Galindo" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		
+		<link rel="stylesheet" type="text/css" href="../css/consultaRfo.css" />
 		<title>Gestión de RFOs</title>
 	</head>
 	
@@ -12,17 +13,18 @@
 		<div id="principal">
 			
 			<header>
+				<h1>Sistema de Gestión de RFOs</h1>
 			</header>
 			
 			<div id="acceso">
+				<h2>Modulo de consulta</h2>
 				<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-					<label>Usuario:
-						<input type="text" name="usuario" />
-					</label>
-					<label>Contraseña:
-						<input type="password" name="contrasena" />
-					</label>
-					<input type="submit" value="Enviar" name="btnEnviar" />
+					
+					<input id="usuario" type="text" name="usuario" size="20" placeholder="Usuario" />
+					
+					<input id="contrasena" type="password" name="contrasena" size="15" placeholder="Contraseña" />
+					
+					<input id="enviar" type="submit" value="Enviar" name="btnEnviar" />
 				</form>
 				
 				<?php
@@ -32,7 +34,7 @@
     		     $usuario=$_POST['usuario'];
     			 $contrasena=$_POST['contrasena'];
     			 
-    			 $link=mysqli_connect('localhost', 'administradorlocal', 'AdminJesus3010', 'nmc');
+    			 $link=mysqli_connect('localhost', 'administrador', 'Nmc_Admin_01', 'nmc');
     			 mysqli_set_charset($link, 'utf8');
     			 
     			 if (mysqli_connect_errno()) {

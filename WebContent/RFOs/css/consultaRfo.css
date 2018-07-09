@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+*{
+	
+	padding: 0;
+	margin: 0;
+}
+
+#body{
+	
+	position: relative;
+	
+	height: 100%
+}
+#principal{
+	
+	position: absolute;
+		top: 0;
+		bottom: 0;
+	width: 100%;
+	
+	background-color: #00ff99;
+}
+
+header {
+	
+	position: relative;
+		top: 10%;
+		
+	
+	text-align: center;
+}
+
+#acceso{
+	
+	position: relative;
+		top: 40%;
+		left: -30%;
+		
+	-webkit-transform: translateY(-70%);
+	-moz-transform: translateY(-70%);
+	-ms-transform: translateY(-70%);
+	-o-transform: translateY(-70%);
+	transform: translateY(-70%);
+	
+	width: 30%;
+	margin: 10px auto;
+	padding: 0px 50px 0 0;
+	
+	border: 2px solid ;
+	border-radius: 5px;
+	
+	box-shadow: 10px 10px 5px grey;
+	text-align: left;
+}
+
+#acceso h2{
+	
+	margin: 20px;
+	
+	border-bottom: 1px solid;
+}
+
+#acceso form{
+	
+	margin: 20px;
+}
+
+p{
+	
+	text-align: center;
+	font-weight: bold;
+	
+}
+
