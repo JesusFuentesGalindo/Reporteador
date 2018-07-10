@@ -79,3 +79,13 @@ CREATE TABLE usuarios(
     PRIMARY KEY (usuario)
 );
 
+CREATE TABLE IF NOT EXISTS participacionRfo(
+	idRfo VARCHAR(15) NOT NULL,
+    usuario VARCHAR(150) NOT NULL,
+    participacion ENUM('Solicitud Creacion RFO', 'Solicitud Validacion RFO', 'Visto Bueno RFO', 'Envio RFO'), 
+    fecha DATETIME NOT NULL,
+    observaciones VARCHAR(8000),
+    PRIMARY KEY(idRfo, usuario, participacion, fecha),
+    FOREIGN KEY(idRfo) REFERENCES rfo(idRfo),
+    FOREIGN KEY(usuario) REFERENCES usuarios(usuario)
+);

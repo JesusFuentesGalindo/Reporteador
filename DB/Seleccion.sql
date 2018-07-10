@@ -38,3 +38,10 @@ FROM rfo;
 
 SELECT *
 FROM usuarios;
+
+USE nmc;
+
+SELECT idIncidente, estatus, DATEDIFF(NOW(), P.fecha) AS diasValidacion FROM rfo, participacionRfo AS P 
+              WHERE rfo.idRfo=P.idRfo 
+              AND P.participacion='Solicitud Validacion RFO'
+              AND estatus='En Revision';
