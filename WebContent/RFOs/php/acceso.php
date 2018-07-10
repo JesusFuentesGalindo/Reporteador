@@ -12,7 +12,7 @@
 	<body>
 		<div id="principal">
 			
-			<header>
+			<header class="encabezadoPrincipal">
 				<h1>Sistema de Gestión de RFOs</h1>
 			</header>
 			

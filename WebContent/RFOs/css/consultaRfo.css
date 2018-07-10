@@ -22,7 +22,7 @@
 	background-color: #00ff99;
 }
 
-header {
+.encabezadoPrincipal {
 	
 	position: relative;
 		top: 10%;
@@ -73,3 +73,29 @@ p{
 	
 }
 
+/*Consulta de INCs asignados*/
+
+#incidentes{
+	
+	width: 100%;
+	text-align: center;
+}
+
+#encabezado, #pie{
+	
+	background-color: black;
+	color: #ffffff;
+	
+}
+
+#incidentes .cuerpo tr:nth-child(even){
+	
+	background-color: #1ECCCA;
+	color: #ffffff;
+}
+
+#incidentes .cuerpo tr:nth-child(odd){
+	
+	background-color: #459998;
+	
+}
