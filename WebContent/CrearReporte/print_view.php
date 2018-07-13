@@ -14,7 +14,7 @@
     $html2pdf->writeHTML($html);
     /*Salida con nombre de archivo*/
     
-    $html2pdf->output('Hola.pdf');
+    $html2pdf->output('RFO.pdf');
     
     
     
