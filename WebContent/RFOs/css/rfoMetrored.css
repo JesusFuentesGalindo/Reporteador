@@ -1,0 +1,104 @@
+@charset "utf-8";
+
+body{
+	
+	background-color: #ebebe0;
+	
+}
+
+#principal{
+	
+	width: 70%;
+	margin: auto auto;
+	background-color: #ffffff;
+	
+}
+
+
+#encabezado{
+	
+	opacity: 0.5;
+	
+	margin-top: 10px;
+	padding: 0 0;
+	
+}
+
+#separadorMetro{
+	
+	position: relative;
+		top: 15px;
+		right: -85px;
+		
+}
+
+#separadorMetro img{
+	
+	width: 95%;
+}
+
+.negrita{
+	
+	font-weight: bold;
+}
+
+#secInfo{
+	
+		margin: 5% 16% 0% 16%;
+}
+
+#formularioRfo p{
+	
+
+	
+	text-align: justify;
+}
+#formularioRfo p input, textarea{
+	
+	border: none;
+}
+
+footer{
+	
+	opacity: 0.5;
+}
+
+footer figure{
+	
+	position: relative;
+		left: -40px;
+		
+	width: 100%;
+}
+
+footer figure img{
+	
+	width: 100%;
+}
+
+.sangria{
+	
+	text-indent: 5%;
+}
+
+.contenido{
+	
+	margin-top: 30px;
+}
+
+#infoFalla p{
+	
+	margin: 0 0;
+}
+
+#infoFalla{
+	
+	margin: auto auto;
+	
+}
+
+#infoFalla input{
+	
+	border: none;
+	text-align: center;
+}

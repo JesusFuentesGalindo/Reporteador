@@ -1,0 +1,122 @@
+@charset "utf-8";
+
+body{
+	
+	background-color: #ebebe0;
+	
+}
+
+#principal{
+	
+	width: 70%;
+	margin: auto auto;
+	background-color: #ffffff;
+	
+}
+
+
+#encabezado{
+	
+	opacity: 0.5;
+	padding: 0 0;
+}
+
+
+#logo{
+	
+	display: inline-block;
+	/*border: solid;*/
+	width: 40%;
+}
+
+#encabezado h1{
+	
+	margin-top: 0px;
+}
+
+#infoRfo{
+	
+	display: inline-block;
+		
+	/*border: solid;*/
+	width: 40%;
+	
+	text-align: right;
+}
+
+#infoRfo p{
+	
+	margin: 0 0;
+	padding: 0 0;
+	
+	font-family: Arial, Sans-serif;
+	font-weight: bold;
+}
+
+.info1{
+	
+	font-size: 20px;
+}
+#encabezado h1, #separador{
+	
+	text-align: center;
+	
+}
+
+
+#tablaFormRfo{
+	
+	margin: auto auto;
+	text-align: center;
+}
+
+#tablaFormRfo, #tablaFormRfo td, th{
+	
+	border: 1px solid #ccccb3;
+}
+
+#tablaFormRfo td{
+	
+	height: 50px;
+}
+#tablaFormRfo input, textarea{
+	
+	border: none;
+	
+	text-align: center;
+}
+
+#infoBestel{
+	
+	margin: 20px auto;
+	
+}
+
+#infoBestel p{
+	
+	margin: 0 0;
+	padding: 0 0;
+	
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	
+}
+
+.txtVerde{
+	
+	color: #8ec03f;
+}
+
+.fondoVerde{
+	
+	background-color: #8ec03f;
+}
+
+footer{
+	
+	opacity: 0.5;
+	text-align: center;
+	
+}
