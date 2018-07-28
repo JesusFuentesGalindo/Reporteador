@@ -29,21 +29,23 @@
 				
 				<?php
 				
-		          if(isset($_POST['usuario'])){
+		         if(isset($_POST['usuario'])){
 			
-    		     $usuario=$_POST['usuario'];
-    			 $contrasena=$_POST['contrasena'];
+    		          $usuario=$_POST['usuario'];
+    			      $contrasena=$_POST['contrasena'];
+		         
     			 
+    			 //Conexi�n mysqli
     			 $link=mysqli_connect('localhost', 'administrador', 'Nmc_Admin_01', 'nmc');
     			 mysqli_set_charset($link, 'utf8');
     			 
-    			 if (mysqli_connect_errno()) {
+    			if (mysqli_connect_errno()){
     			     printf("Falló la conexión: %s\n", mysqli_connect_error());
     			     exit();
     			 }
     			 
     			 $query="SELECT `usuario`, `contrasena` FROM usuarios WHERE usuario='$usuario'";
-    		     
+    			 
     			 if($sentencia=mysqli_prepare($link, $query)){
     			     mysqli_stmt_execute($sentencia);
     			     mysqli_stmt_bind_result($sentencia, $usLogin, $pass);
@@ -61,9 +63,10 @@
     			 }else{
     			     echo "<p>error</p>";
     			 }
-    		     
-    		     mysqli_close($link);
-    			}
+    			 
+    			 mysqli_close($link);
+		          }
+    			
              ?>
 			</div>
 
