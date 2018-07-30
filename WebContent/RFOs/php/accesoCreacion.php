@@ -26,7 +26,7 @@
 			</header>
 			
 			<div id="acceso">
-				<h2>Modulo de consulta Validación</h2>
+				<h2>Modulo de consulta Estatus</h2>
 				<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 					
 					<input id="usuario" type="text" name="usuario" size="20" placeholder="Usuario" />
@@ -61,7 +61,7 @@
     			     mysqli_stmt_fetch($sentencia);
     			     if($usLogin!=""){
     			         if($contrasena==$pass){
-    			             header("Location: incAsignado.php/?usuario=$usLogin");
+    			             header("Location: estatusRfo.php/?usuario=$usLogin");
     			         }else{
     			             echo "<p>La contraseña es incorrecta</p>";
     			         }

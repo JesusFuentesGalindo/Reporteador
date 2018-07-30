@@ -3,17 +3,27 @@
 	<head>
 		<meta charset="utf-8" />
 		
-		<link rel="stylesheet" type="text/css" href="../css/consultaRfo.css" />
+		<link rel="stylesheet" type="text/css" href="/WebContent/RFOs/css/consultaRfo.css" />
 		
 		<title>Gestión de RFOs</title>
 	</head>
 	<body>
 		<div id="principal">
+		
+		<div id="grpoMenu">
+			<nav>
+				<ul>
+					<li><a href="accesoCreacion.php">Regresar</a></li>
+				</ul>
+			</nav>
+		</div>
+		
 			<header>
 				<h1>Sistema de Gestión de RFOs</h1>
 			</header>
             <?php 
                 
+                $usuario=$_GET['usuario'];
                 $link=mysqli_connect('localhost', 'administrador', 'Nmc_Admin_01', 'nmc');
                 mysqli_set_charset($link, 'utf8');
                 
@@ -29,9 +39,9 @@
                     usuarios.nombre
                 FROM 
                 	rfo, 
-                    (SELECT DISTINCT idRfo, MAX(fecha) AS fecha FROM participacionRfo GROUP BY idRfo)  AS A,
-                    (SELECT DISTINCT idRfo, MIN(fecha) AS fecha FROM participacionRfo GROUP BY idRfo) AS C,
-                    participacionRfo AS B,
+                    (SELECT DISTINCT idRfo, MAX(fecha) AS fecha FROM participacionrfo GROUP BY idRfo)  AS A,
+                    (SELECT DISTINCT idRfo, MIN(fecha) AS fecha FROM participacionrfo GROUP BY idRfo) AS C,
+                    participacionrfo AS B,
                     incidentes,
                     clientes,
                     servicios,
@@ -77,7 +87,7 @@
                         if($estatus=='En Revision') ++$revision;
                         if($estatus=='Pendiente') ++$pendiente;
                         echo "<tr>";
-                        echo      "<td><a href='../Form/editarRfo.php?inc=$idIncidente'>$idIncidente</a></td>";
+                        echo      "<td><a href='/WebContent/RFOs/Form/editarRfo.php?inc=$idIncidente&mod=0&usuario=$usuario'>$idIncidente</a></td>";
                         echo      "<td>$incPadre</td>";
                         echo      "<td>$cliente</td>";
                         echo      "<td>$estatus</td>";
@@ -102,6 +112,7 @@
                     echo "</table>";
                     mysqli_stmt_close($sentencia);
                 }
+                echo mysqli_error($link);
                 mysqli_close($link);
                 
                 

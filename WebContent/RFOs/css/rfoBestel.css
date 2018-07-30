@@ -70,6 +70,10 @@ body{
 	text-align: center;
 }
 
+#formularioRfo{
+	
+	text-align: center;
+}
 #tablaFormRfo, #tablaFormRfo td, th{
 	
 	border: 1px solid #ccccb3;
@@ -120,3 +124,5 @@ footer{
 	text-align: center;
 	
 }
+
+

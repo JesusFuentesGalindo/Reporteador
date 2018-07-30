@@ -5,7 +5,7 @@
 		<meta name="author" content="Jose de Jesus Fuentes Galindo" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		
-		<link rel="stylesheet" type="text/css" href="../../css/consultaRfo.css" />
+		<link rel="stylesheet" type="text/css" href="/WebContent/RFOs/css/consultaRfo.css" />
 		
 		<title>Gestión de RFOs</title>
 	</head>
@@ -14,18 +14,19 @@
 		<div id="principal">
 			<header>
 				<h1>Sistema de Gestión de RFOs</h1>
-				<p><a href="../acceso.php">Salir</a></p>
+				<p><a href="/WebContent/RFOs/php/acceso.php">Salir</a></p>
 			</header>
+			
     		<?php
-    		  $supervisor=$_GET['usuario'];
+    		  $usuario=$_GET['usuario'];
     		  
     		  $link=mysqli_connect('localhost', 'administrador', 'Nmc_Admin_01', 'nmc');
     		  mysqli_set_charset($link, 'utf8_general_ci');
-    		  $query="SELECT idIncidente, estatus, DATEDIFF(NOW(), P.fecha) AS diasValidacion FROM rfo, participacionRfo AS P 
+    		  $query="SELECT idIncidente, estatus, DATEDIFF(NOW(), P.fecha) AS diasValidacion FROM rfo, participacionrfo AS P 
               WHERE rfo.idRfo=P.idRfo 
               AND P.participacion='Solicitud Validacion RFO'
               AND estatus='En Revision'
-              AND responsableValidacion='$supervisor'";
+              AND responsableValidacion='$usuario'";
     		  
     		  if($sentencia=mysqli_prepare($link, $query)){
     		      
@@ -47,7 +48,7 @@
     		          ++$numIncs;
     		          
     		          echo "<tr>";
-                      echo      "<td><a href='../detalleRfo.php/?inc=$inc&supervisor=$supervisor'>$inc</a></td>";
+                      echo      "<td><a href='/WebContent/RFOs/Form/editarRfo.php/?inc=$inc&usuario=$usuario&mod=1'>$inc</a></td>";
                       echo      "<td>$estatus</td>";
                       echo      "<td>$diasValidacion</td>";
                       echo "</tr>";
@@ -63,6 +64,7 @@
     		      echo "</table>";
     		      mysqli_stmt_close($sentencia);
     		  }
+    		  echo mysqli_error($link);
     		  mysqli_close($link);
     		  
     		?>

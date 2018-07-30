@@ -22,8 +22,8 @@
             $link=mysqli_connect('localhost', 'administrador', 'Nmc_Admin_01', 'nmc');
             mysqli_set_charset($link, 'utf8_general_ci');
             $query="SELECT incPadre, causa, resolucion, 
-            incidenteServicio.circuito, incidenteServicio.inicioAfectacionFalla,
-            incidenteServicio.finAfectacionFalla FROM incidentes, incidenteServicio WHERE incidentes.idIncidente = incidenteServicio.idIncidente
+            incidenteservicio.circuito, incidenteservicio.inicioAfectacionFalla,
+            incidenteservicio.finAfectacionFalla FROM incidentes, incidenteservicio WHERE incidentes.idIncidente = incidenteservicio.idIncidente
             AND incidentes.idIncidente='$inc'";
             
             if($sentencia=mysqli_prepare($link, $query)){
@@ -52,6 +52,7 @@
                 echo "</form>";
                 mysqli_stmt_close($sentencia);
             }
+            echo mysqli_error($link);
             mysqli_close($link);
             ?>
         </div>
