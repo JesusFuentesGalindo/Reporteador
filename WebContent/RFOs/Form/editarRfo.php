@@ -74,20 +74,48 @@
 		<meta name="author" content="Jose de Jesus Fuentes Galindo" />
 		<link rel="stylesheet" type="text/css" href="/WebContent/RFOs/css/rfo<?php echo $empresaGestora;?>.css" />
 		<title>Editar RFO</title>
+		<script src="http://momentjs.com/downloads/moment.min.js"></script>
 		<script type="text/javascript">
-    		function difer(){
-    			var fecha1= new Date(document.getElementsByName('inicioFalla').value);
-    			var fecha2= new Date(document.getElementsByName('finFalla').value);
-    			var diffDays=fecha2.getDate() - fecha1.getDate();
+
+			var inicioFallaFecha;
+			var finFallaFecha;
+		
+			function diferFecha(){
+    			
+    			var inicioFalla = moment(inicioFallaFecha);
+    			var finFalla = moment(inicioFallaFecha);
+
+    			var fechaInicio = inicioFalla
+    			var fechaFin = finFalla
+
+    			var dif = finFalla.diff(inicioFalla, 'minutes');
+    			
     
-    			document.getElementsByName('afectacion').value=diffDays;
-    
-    			window.alert(fecha1);
+    			window.alert(dif);
     		}
+
+    		function formatoFecha(){
+
+
+    			var meses=new Array ("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+    			var inicioFalla = document.getElementsByName('inicioFalla')[0].value;
+    			var finFalla = document.getElementsByName('finFalla')[0].value;
+    			
+    			if (inicioFallaFecha="") inicioFallaFecha=inicioFalla;
+    			if (finFallaFecha="") finFallaFecha=finFalla;
+
+    			var fechaInicio = new Date(inicioFallaFecha);
+    			var fechaFin = new Date(finFallaFecha);
+
+    			inicioFalla[0].value= fechaInicio.getDate() + "/" + meses[fechaInicio.getMonth()] + "/" + fechaInicio.getFullYear() + " " + fechaInicio.getHours() + ":" + fechaInicio.getMinutes();
+    			finFalla[0].value= fechaFin.getDate() + "/" + meses[fechaFin.getMonth()] + "/" + fechaFin.getFullYear() + " " + fechaFin.getHours() + ":" + fechaFin.getMinutes();
+
+    		}
+    		
     	</script>
 	</head>
 	
-	<body>
+	<body onload='formatoFecha()'>
 		
 		<div id="grpoMenu">
 			<nav>
@@ -144,8 +172,8 @@
         						echo "<tr><td><label>ID de Servicio:</label></td><td><input type='text' name='circuito' value='$value'size='75' /></td></tr>";
         						echo "<tr><td><label>Número de Reporte:</label></td><td><input type='text' name='idIncidente' value='$inc' readonly='readonly' size='75' /></td></tr>";
         						echo "<tr><td><label>Falla Reportada:</label></td><td><input type='text' name='fallaReportada' value='$tipoProblema' size='75' /></td></tr>";
-        						echo "<tr><td><label>Fecha y Hora de Inicio:</label></td><td><input type='text' name='inicioFalla' value='$inicioFalla' size='75' onChange='difer()' /></td></tr>";
-        						echo "<tr><td><label>Fecha y Hora de Fin:</label></td><td><input type='text' name='finFalla' value='$finFalla' size='75' onChange='difer()' /></td></tr>";
+        						echo "<tr><td><label>Fecha y Hora de Inicio:</label></td><td><input type='text' name='inicioFalla' value='$inicioFalla' size='75' onchange='diferFecha()'  /></td></tr>";
+        						echo "<tr><td><label>Fecha y Hora de Fin:</label></td><td><input type='text' name='finFalla' value='$finFalla' size='75' onchange='diferFecha()' /></td></tr>";
         						echo "<tr><td><label>Tiempo Total de Afectación:</label></td><td><input type='text' name='afectacion' disabled='disabled'/></td></tr>";
         						echo "<tr><td><label>Causa de la Falla:</label></td><td><textarea name='causa' rows='4' cols='55'>$causa</textarea></td></tr>";
         						echo "<tr><td><label>Actividades para Restablecimiento:</label></td><td><textarea name='resolucion' rows='4' cols='55'>$resolucion</textarea></td></tr>";
@@ -192,8 +220,8 @@
         		          
         		          echo "<table id='infoFalla'>";
             		          echo "<tr><td><label>Número de Circuito:</label></td><td><input type='text' name='circuito' value='$circuito' size='30' /></td></tr>";
-            		          echo "<tr><td><label>Fecha y Hora de Inicio de Falla:</label></td><td><input type='text' name='inicioFalla' value='$inicioFalla' size='30' onChange='difer()' /></td></tr>";
-            		          echo "<tr><td><label>Fecha y Hora de Fin de Falla:</label></td><td><input type='text' name='finFalla' value='$finFalla' size='30' onChange='difer()' /></td></tr>";
+            		          echo "<tr><td><label>Fecha y Hora de Inicio de Falla:</label></td><td><input type='text' name='inicioFalla' value='$inicioFalla' size='30' onchange='diferFecha()' /></td></tr>";
+            		          echo "<tr><td><label>Fecha y Hora de Fin de Falla:</label></td><td><input type='text' name='finFalla' value='$finFalla' size='30' onchange='diferFecha()' /></td></tr>";
                               echo "<tr><td><label>Tiempo de Afectación:</label></td><td><input type='text' name='afectacion' size='30' readonly ='readonly' /></td></tr>";
                           echo "</table>";
                           

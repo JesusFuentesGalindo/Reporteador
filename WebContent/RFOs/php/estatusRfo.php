@@ -13,7 +13,7 @@
 		<div id="grpoMenu">
 			<nav>
 				<ul>
-					<li><a href="accesoCreacion.php">Regresar</a></li>
+					<li><a href="/WebContent/RFOs/php/accesoCreacion.php?usuario=">Regresar</a></li>
 				</ul>
 			</nav>
 		</div>
