@@ -36,7 +36,8 @@
                     A.fecha,
                     DATEDIFF(NOW(), C.fecha) AS 'Dias en Proceso',
                     incidentes.areaResolutora,
-                    usuarios.nombre
+                    usuarios.nombre,
+                    B.observaciones
                 FROM 
                 	rfo, 
                     (SELECT DISTINCT idRfo, MAX(fecha) AS fecha FROM participacionrfo GROUP BY idRfo)  AS A,
@@ -57,13 +58,13 @@
                     AND A.fecha=B.fecha
                 	AND rfo.idIncidente=incidentes.idIncidente
                 	AND rfo.responsableValidacion=usuarios.usuario
-                	AND (rfo.estatus='En Revision' OR rfo.estatus='Pendiente')
+                	AND rfo.estatus !='Enviado'
                 ORDER BY estatus, DATEDIFF(NOW(), C.fecha) DESC;";
                 
                 if($sentencia=mysqli_prepare($link, $query)){
                     
                     mysqli_stmt_execute($sentencia);
-                    mysqli_stmt_bind_result($sentencia, $idIncidente, $incPadre, $cliente, $estatus, $participacion, $fecha, $diasProceso, $areaResolutora, $nombre);
+                    mysqli_stmt_bind_result($sentencia, $idIncidente, $incPadre, $cliente, $estatus, $participacion, $fecha, $diasProceso, $areaResolutora, $nombre, $comentarios);
                     
                     echo "<p>Pendiente = El RFO no se a generado</p>";
                     echo "<p>En Revisión = El RFO ya se genero y esta a la espera de Visto Bueno</p>";
@@ -72,7 +73,7 @@
                     echo    "<thead id='encabezado'>";
                     echo        "<tr>";
                     echo            "<th>Incidente</th><th>INC Padre</th><th>Cliente</th><th>Estatus</th><th>Acción</th><th>fecha de Acción</th>
-                                    <th>Dias en Proceso</th><th>Area Resolutora</th><th>Supervisor</th>";
+                                    <th>Dias en Proceso</th><th>Area Resolutora</th><th>Supervisor</th><th>Comentarios</th>";
                     echo        "</tr>";
                     echo    "</thead>";
                     
@@ -96,6 +97,7 @@
                         echo      "<td>$diasProceso</td>";
                         echo      "<td>$areaResolutora</td>";
                         echo      "<td>$nombre</td>";
+                        echo      "<td>$comentarios</td>";
                         echo "</tr>";
                     }
                     

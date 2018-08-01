@@ -74,41 +74,71 @@
 		<meta name="author" content="Jose de Jesus Fuentes Galindo" />
 		<link rel="stylesheet" type="text/css" href="/WebContent/RFOs/css/rfo<?php echo $empresaGestora;?>.css" />
 		<title>Editar RFO</title>
+		
 		<script src="http://momentjs.com/downloads/moment.min.js"></script>
+		
 		<script type="text/javascript">
 
-			var inicioFallaFecha;
-			var finFallaFecha;
-		
+			function noRequerir(){
+
+				document.getElementById('observaciones').innerHTML = "<label>Observaciones:<textarea name='observaciones' style='border: solid;' cols='50' rows='5'></textarea></label>";
+				
+			}
+			
+			function requerir(){
+
+				document.getElementById('observaciones').innerHTML = "<label>Observaciones:<textarea name='observaciones' style='border: solid;' cols='50' rows='5' required='required' ></textarea></label>";
+			}
+
+			function actualizarFecha(){
+
+				var fechaInicio = document.getElementsByName('inicioFalla')[0].value;
+				var fechaFin=document.getElementsByName('finFalla')[0].value;
+
+				var fechaInc= new Date(fechaInicio);
+				var fechaTerm= new Date(fechaFin);
+
+				var meses=new Array ("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+
+				document.getElementById('fechaInicio').value=fechaInc.getFullYear() + "/" + meses[fechaInc.getMonth()] + "/" + fechaInc.getDate() + " " + fechaInc.getHours() + ":" + fechaInc.getMinutes();
+				document.getElementById('fechaFin').value=fechaTerm.getFullYear() + "/" + meses[fechaTerm.getMonth()] + "/" + fechaTerm.getDate() + " " + fechaTerm.getHours() + ":" + fechaTerm.getMinutes();
+
+				//window.alert(document.getElementById('fechaInicio').value);
+
+				diferFecha();
+			}
+
 			function diferFecha(){
     			
-    			var inicioFalla = moment(inicioFallaFecha);
-    			var finFalla = moment(inicioFallaFecha);
-
-    			var fechaInicio = inicioFalla
-    			var fechaFin = finFalla
+    			var inicioFalla = moment(document.getElementById('fechaInicio').value);
+    			var finFalla = moment(document.getElementById('fechaFin').value);
 
     			var dif = finFalla.diff(inicioFalla, 'minutes');
-    			
-    
-    			window.alert(dif);
+
+    			document.getElementsByName('afectacion')[0].value=dif;
     		}
 
     		function formatoFecha(){
 
 
-    			var meses=new Array ("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
-    			var inicioFalla = document.getElementsByName('inicioFalla')[0].value;
-    			var finFalla = document.getElementsByName('finFalla')[0].value;
-    			
-    			if (inicioFallaFecha="") inicioFallaFecha=inicioFalla;
-    			if (finFallaFecha="") finFallaFecha=finFalla;
+				var inpFechaInicio = document.getElementById('fechaInicio');
+				var inpFechaFin = document.getElementById('fechaFin');
 
-    			var fechaInicio = new Date(inicioFallaFecha);
-    			var fechaFin = new Date(finFallaFecha);
+    			var inicioFalla = document.getElementsByName('inicioFalla');
+    			var finFalla = document.getElementsByName('finFalla');
+
+    			inpFechaInicio.value=inicioFalla[0].value;
+    			inpFechaFin.value=finFalla[0].value;
+
+    			var meses=new Array ("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+    			
+    			var fechaInicio = new Date(inpFechaInicio.value);
+    			var fechaFin = new Date(inpFechaFin.value);
 
     			inicioFalla[0].value= fechaInicio.getDate() + "/" + meses[fechaInicio.getMonth()] + "/" + fechaInicio.getFullYear() + " " + fechaInicio.getHours() + ":" + fechaInicio.getMinutes();
     			finFalla[0].value= fechaFin.getDate() + "/" + meses[fechaFin.getMonth()] + "/" + fechaFin.getFullYear() + " " + fechaFin.getHours() + ":" + fechaFin.getMinutes();
+
+    			diferFecha();
 
     		}
     		
@@ -154,6 +184,8 @@
         			echo "<form id='formularioRfo' action='/WebContent/RFOs/php/validarRfo.php' method='post'>";
         			    echo "<input type='hidden' name='mod' value='$mod' />";
         			    echo "<input type='hidden' name='usuario' value='$usuario' />";
+        			    echo "<input type='hidden' id='fechaInicio' name='fechaInicio' />";
+        			    echo "<input type='hidden' id='fechaFin' name='fechaFin' />";
         				echo "<table id='tablaFormRfo'>";
         				
         					echo "<thead>";
@@ -172,14 +204,20 @@
         						echo "<tr><td><label>ID de Servicio:</label></td><td><input type='text' name='circuito' value='$value'size='75' /></td></tr>";
         						echo "<tr><td><label>Número de Reporte:</label></td><td><input type='text' name='idIncidente' value='$inc' readonly='readonly' size='75' /></td></tr>";
         						echo "<tr><td><label>Falla Reportada:</label></td><td><input type='text' name='fallaReportada' value='$tipoProblema' size='75' /></td></tr>";
-        						echo "<tr><td><label>Fecha y Hora de Inicio:</label></td><td><input type='text' name='inicioFalla' value='$inicioFalla' size='75' onchange='diferFecha()'  /></td></tr>";
-        						echo "<tr><td><label>Fecha y Hora de Fin:</label></td><td><input type='text' name='finFalla' value='$finFalla' size='75' onchange='diferFecha()' /></td></tr>";
+        						echo "<tr><td><label>Fecha y Hora de Inicio:</label></td><td><input type='text' name='inicioFalla' value='$inicioFalla' size='75' onchange='actualizarFecha()'  /></td></tr>";
+        						echo "<tr><td><label>Fecha y Hora de Fin:</label></td><td><input type='text' name='finFalla' value='$finFalla' size='75' onchange='actualizarFecha()' /></td></tr>";
         						echo "<tr><td><label>Tiempo Total de Afectación:</label></td><td><input type='text' name='afectacion' disabled='disabled'/></td></tr>";
         						echo "<tr><td><label>Causa de la Falla:</label></td><td><textarea name='causa' rows='4' cols='55'>$causa</textarea></td></tr>";
         						echo "<tr><td><label>Actividades para Restablecimiento:</label></td><td><textarea name='resolucion' rows='4' cols='55'>$resolucion</textarea></td></tr>";
         					echo "</tbody>";
         				echo "</table>";
-        				echo "<input id='btnEnviar' type='submit' value='$AccBtn' />";
+        				
+        				echo "<fieldset><legend>Aprobado</legend>";
+        				    echo "<input type='radio' name='aprobado' value='1' checked=checked onclick='noRequerir()' />SI";
+        				    echo "<input type='radio' name='aprobado' value='0' onclick='requerir()' />NO";
+        				    echo "<p id='observaciones'><label>Observaciones:<textarea name='observaciones' style='border: solid;' cols='50' rows='5' onclick='requerir()'></textarea></label></p>";
+        				    echo "<input id='btnEnviar' type='submit' value='$AccBtn' />";
+        				echo "</fieldset>";
         			echo "</form>";
         			
         			echo "<div id='infoBestel'>";
@@ -194,7 +232,7 @@
         		echo "<footer>";
         			
         			echo "<figure>";
-        				echo "<img alt='Separador' src='../../CrearReporte/img/linea.png' />";
+        				echo "<img alt='Separador' src='/WebContent/CrearReporte/img/linea.png' />";
         			echo "</figure>";
         			
         			echo "<p>Santa Apolonia #9 Col. Santa Apolonia Azcapotzalco, México DF, CP 02790 T: (52) 55 4000 2100 F (52) 55 4000 2190</p>";
@@ -213,6 +251,8 @@
         		      echo "<form id='formularioRfo' action='/WebContent/RFOs/php/validarRfo.php' method='post'>";
         		      echo "<input type='hidden' name='mod' value='$mod' />";
         		      echo "<input type='hidden' name='usuario' value='$usuario' />";
+        		      echo "<input type='hidden' id='fechaInicio' name='fechaInicio' />";
+        		      echo "<input type='hidden' id='fechaFin' name='fechaFin' />";
         		          echo "<p><input class='negrita' type='text' name='cliente' value='$nombreCliente' size='75' /></p>";
         		          echo "<p class='negrita'>P R E S E N T E</p>";
         		          
@@ -220,8 +260,8 @@
         		          
         		          echo "<table id='infoFalla'>";
             		          echo "<tr><td><label>Número de Circuito:</label></td><td><input type='text' name='circuito' value='$circuito' size='30' /></td></tr>";
-            		          echo "<tr><td><label>Fecha y Hora de Inicio de Falla:</label></td><td><input type='text' name='inicioFalla' value='$inicioFalla' size='30' onchange='diferFecha()' /></td></tr>";
-            		          echo "<tr><td><label>Fecha y Hora de Fin de Falla:</label></td><td><input type='text' name='finFalla' value='$finFalla' size='30' onchange='diferFecha()' /></td></tr>";
+            		          echo "<tr><td><label>Fecha y Hora de Inicio de Falla:</label></td><td><input type='text' name='inicioFalla' value='$inicioFalla' size='30' onchange='actualizarFecha()' /></td></tr>";
+            		          echo "<tr><td><label>Fecha y Hora de Fin de Falla:</label></td><td><input type='text' name='finFalla' value='$finFalla' size='30' onchange='actualizarFecha()' /></td></tr>";
                               echo "<tr><td><label>Tiempo de Afectación:</label></td><td><input type='text' name='afectacion' size='30' readonly ='readonly' /></td></tr>";
                           echo "</table>";
                           
@@ -238,7 +278,12 @@
         		          echo "<p class='sangria'>Sin acciones pendientes.</p>";
         		          echo "<p class='sangria'>Esperando que este reporte sea de su utilidad, nos reiteramos a sus órdenes en espera de sus comentarios.</p>";
         		          
-        		          echo "<input id='btnEnviar' type='submit' value='$AccBtn' />";
+        		          echo "<fieldset><legend>Aprobado</legend>";
+        		              echo "<input type='radio' name='aprobado' value='1' checked=checked onclick='noRequerir()' />SI";
+        		              echo "<input type='radio' name='aprobado' value='0' onclick='requerir()' />NO";
+        		              echo "<p id='observaciones'><label>Observaciones:<textarea name='observaciones' style='border: solid;' cols='50' rows='5' onclick='requerir()'></textarea></label></p>";
+        		              echo "<input id='btnEnviar' type='submit' value='$AccBtn' />";
+        		          echo "</fieldset>";
         		          
         		      echo "</form>";
         		      

@@ -5,8 +5,8 @@
     $causa=$_POST['causa'];
     $resolucion=$_POST['resolucion'];
     $circuito=$_POST['circuito'];
-    $inicioFalla=$_POST['inicioFalla'];
-    $finFalla=$_POST['finFalla'];
+    $inicioFalla=$_POST['fechaInicio'];
+    $finFalla=$_POST['fechaFin'];
     $fallaReportada=$_POST['fallaReportada'];
     $idRfo=str_replace('INC', 'RFO', $idIncidente);
     $mod=$_POST['mod'];
@@ -53,7 +53,7 @@
     
     header("Location: /WebContent/RFOs/php/$regreso.php/?usuario=$usuario");
     
-    //echo $idRfo;
+    //echo $localTime[2];
     //echo $usuario;
     //echo $estatus;
 ?>
