@@ -58,7 +58,7 @@
                     AND A.fecha=B.fecha
                 	AND rfo.idIncidente=incidentes.idIncidente
                 	AND rfo.responsableValidacion=usuarios.usuario
-                	AND rfo.estatus !='Enviado'
+                	AND (rfo.estatus !='Enviado' AND rfo.estatus != 'N/A')
                 ORDER BY estatus, DATEDIFF(NOW(), C.fecha) DESC;";
                 
                 if($sentencia=mysqli_prepare($link, $query)){
@@ -98,6 +98,7 @@
                         echo      "<td>$areaResolutora</td>";
                         echo      "<td>$nombre</td>";
                         echo      "<td>$comentarios</td>";
+                        echo      "<td><a href='/WebContent/CrearReporte/print_view.php?inc=$idIncidente'>PDF</a></td>";
                         echo "</tr>";
                     }
                     

@@ -28,7 +28,7 @@
     $link=mysqli_connect('localhost', 'administrador', 'Nmc_Admin_01', 'nmc');
     mysqli_set_charset($link, 'utf8');
     
-    $query="UPDATE incidentes SET causa='$causa', resolucion='$resolucion', tipoProblema=$fallaReportada  WHERE idIncidente='$idIncidente'";
+    $query="UPDATE incidentes SET causa='$causa', resolucion='$resolucion', tipoProblema='$fallaReportada'  WHERE idIncidente='$idIncidente'";
     $resultado=mysqli_query($link, $query);
     
     $query="UPDATE incidenteservicio SET circuito='$circuito', inicioAfectacionFalla='$inicioFalla', finAfectacionFalla='$finFalla' WHERE idIncidente='$idIncidente'";
@@ -47,7 +47,8 @@
     $resultado=mysqli_query($link, $query);
     
     echo $error=mysqli_error($link);
-    
+    echo $causa;
+    echo $resolucion;
 
     mysqli_close($link);
     

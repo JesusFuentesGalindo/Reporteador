@@ -1,37 +1,40 @@
 <?php
-
-$idRfo=$_POST['idRfo'];
-$idIncidente=$_POST['idIncidente'];
-$estatus=$_POST['estatus'];
+//Datos de Solicitud
+$idIncidente=$_POST['inc'];
+$idRfo=str_replace("INC", "RFO", $idIncidente);
+$estatus="Pendiente";
 $medio=$_POST['medio'];
+$observaciones=$_POST['observaciones'];
 
-/*Solicitud*/
-$fechaSolicitud=$_POST['fechaSolicitud'];
-$responsableSolicitud=$_POST['responsableSolicitud'];
+$fechaSolicitud=$_POST['fecha'];
+$responsableSolicitud=$_POST['idUsuario'];
+$nombreResponsable=$_POST['nombreUsuario'];
 
-/*Validacion*/
-$responsableEnvioValidacion=$_POST['responsableEnvioValidacion'];
-$fechaEnvioValidacion=$_POST['fechaEnvioValidacion'];
-$responsableValidacion=$_POST['responsableValidacion'];
-
+//Preparar conexion
 $link=mysqli_connect('localhost', 'administrador', 'Nmc_Admin_01', 'nmc');
+mysqli_set_charset($link, 'utf8');
 
-$query="INSERT INTO rfo(idRfo, idIncidente, estatus, fechaSolicitud, responsableSolicitud,
-    fechaEnvioValidacion, responsableEnvioValidacion, responsableValidacion, fechaVistoBueno, ResponsableVistoBueno,
-    fechaEnvioRfo, responsableEnvioRfo, medio, observaciones)
-    VALUES('$idRfo', '$idIncidente', '$estatus', '1900/01/01 00:00', 'Generico', NULL, NULL, '$responsableValidacion', NULL, NULL, NULL, NULL, '$medio', NULL)";
-
+//Insertar INC
+$query="INSERT INTO incidentes(idIncidente) VALUES('$idIncidente')";
 $resultado=mysqli_query($link, $query);
 
+
+//Insertar RFO
+$query="INSERT INTO rfo(idRfo, idIncidente, estatus, responsableValidacion, medio, observaciones)
+    VALUES('$idRfo', '$idIncidente', '$estatus', 'Generico', '$medio', NULL)";
+$resultado=mysqli_query($link, $query);
+
+//Insertar Usuario
+$query="INSERT INTO usuarios(usuario, contrasena, nombre, puesto, area)
+    VALUES('$responsableSolicitud', '1234', '$nombreResponsable', 'Generico', 'Generico')";
+$resultado=mysqli_query($link, $query);
+echo $resultado;
+
+//Insertar participacion
 $query="INSERT INTO participacionRfo(idRfo, usuario, participacion, fecha, observaciones)
-    VALUES('$idRfo', '$responsableSolicitud', 'Solicitud Creacion RFO', '$fechaSolicitud', null)";
-
+    VALUES('$idRfo', '$responsableSolicitud', 'Solicitud Creacion RFO', '$fechaSolicitud', '$observaciones')";
 $resultado=mysqli_query($link, $query);
 
-$query=$query="INSERT INTO participacionRfo(idRfo, usuario, participacion, fecha, observaciones)
-    VALUES('$idRfo', '$responsableEnvioValidacion', 'Solicitud Validacion RFO', '$fechaEnvioValidacion', null)";
-
-$resultado=mysqli_query($link, $query);
 
 $error=mysqli_error($link);
 
@@ -39,5 +42,5 @@ echo $error;
 
 mysqli_close($link);
 
-header("Location: /INCs/Form/alta.html")
+header("Location: /WebContent/RFOs/Form/solicitudRfo.html")
 ?>

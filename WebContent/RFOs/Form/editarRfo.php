@@ -66,6 +66,14 @@
         break;
     }
     
+    if ($circuitoM6 != ""){
+        $value=$circuitoM6;
+    }else if($circuitoSicab != ""){
+        $value=$circuitoSicab;
+    }else{
+        $value=$circuito;
+    }
+    
 ?>
 
 	<head>
@@ -194,13 +202,6 @@
         					
         					echo "<tbody>";
         						echo "<tr><td><label>Cliente:</label></td><td><input type='text' name='cliente' value='$nombreCliente' readonly='readonly' size='75' /></td></tr>";
-        						if ($circuitoM6 != ""){
-        						    $value=$circuitoM6;
-        						}else if($circuitoSicab != ""){
-        					        $value=$circuitoSicab;
-        						}else{
-        						    $value=$circuito;
-        						}
         						echo "<tr><td><label>ID de Servicio:</label></td><td><input type='text' name='circuito' value='$value'size='75' /></td></tr>";
         						echo "<tr><td><label>Número de Reporte:</label></td><td><input type='text' name='idIncidente' value='$inc' readonly='readonly' size='75' /></td></tr>";
         						echo "<tr><td><label>Falla Reportada:</label></td><td><input type='text' name='fallaReportada' value='$tipoProblema' size='75' /></td></tr>";
@@ -256,7 +257,7 @@
         		          echo "<p><input class='negrita' type='text' name='cliente' value='$nombreCliente' size='75' /></p>";
         		          echo "<p class='negrita'>P R E S E N T E</p>";
         		          
-        		          echo "<p class='contenido sangria'>Por este medio les enviamos un cordial saludo y manifestamos que en relación con el Trouble ticket ocurrido en días anteriores identificado con el caso <input type='text' name='idIncidente' value=$inc size='12' readonly='readonly' />; se tiene la siguiente información:</p>";
+        		          echo "<p class='contenido sangria'>Por este medio les enviamos un cordial saludo y manifestamos que en relación con el Trouble ticket ocurrido en días anteriores identificado con el caso <input type='text' name='idIncidente' value=$inc size='15' readonly='readonly' />; se tiene la siguiente información:</p>";
         		          
         		          echo "<table id='infoFalla'>";
             		          echo "<tr><td><label>Número de Circuito:</label></td><td><input type='text' name='circuito' value='$circuito' size='30' /></td></tr>";
@@ -269,10 +270,10 @@
                           echo "<p class='sangria contenido'><input type='text' name='fallaReportada' value='$tipoProblema' size='30' /></p>";
         		    
         		          echo "<p><label class='negrita'>Causa del Problema:</label></p>";
-                          echo "<p class='sangria contenido'><textarea name='causa' rows='4' cols='95'>$causa</textarea></p>";
+                          echo "<p class='sangria contenido'><textarea name='causa' rows='4' cols='80'>$causa</textarea></p>";
                           
         		          echo "<p><label class='negrita'>Acción Correctiva:</label></p>";
-                          echo "<p class='sangria'><textarea name='resolucion' rows='4' cols='95'>$resolucion</textarea></p>";
+                          echo "<p class='sangria'><textarea name='resolucion' rows='4' cols='80'>$resolucion</textarea></p>";
         		          
         		          echo "<p class='negrita'>Acción Pendiente:</p>";
         		          echo "<p class='sangria'>Sin acciones pendientes.</p>";

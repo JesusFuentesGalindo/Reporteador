@@ -8,41 +8,131 @@
 	</head>
 	
 	<body>
+		
+		<div id="grpoMenu">
+			<nav>
+				<ul>
+					<li><a href="/WebContent/RFOs/index.html">Regresar</a></li>
+				</ul>
+			</nav>
+		</div>
+		
 		<div id="principal">
 			<section>
-				<form>
-					<p><input type="hidden" name="idUsuario" value="" /></p>
-					<p><input type="hidden" name="nombreUsuario" value="" /></p>
+				<form id="frmIngresarSolicitud" action="/WebContent/RFOs/php/solicitudRfo.php" method="post" onsubmit="return enviarDatos();">
+					<p><input type="hidden" id="idUsuario" name="idUsuario" value="" /></p>
+					<p><input type="hidden" id="nombreUsuario" name="nombreUsuario" value="" /></p>
+					
 					<p><label>INC:
 						<input type="text" name="inc" maxlength="15" />
 					</label></p>
 					
 					<p><label>Usuario que Solicita:
-						<input type="text" name="usuario" onchange="extraerUsuario()"/>
+						<input type="text" name="usuario" />
 					</label></p>
 					
 					<p><label>Fecha de Solicitud:
 						<input type="text" name="fecha" />
 					</label></p>
+					
+					<p>Medio de Solicitud: <select name="medio">
+						<option value="Mail" selected="selected">Mail</option>
+						<option value="Telefono">Teléfono</option>
+					</select></p>
+					
+					<p><label>Comentarios:
+						<textarea name="observaciones" rows="2" cols="50"></textarea>
+					</label></p>
+					
 					<p><input type="submit" value="Solicitar" />
 				</form>
 			</section>
 		</div>
 		
 		<script type="text/javascript">
-			function extraerUsuario(){
+			function enviarDatos(){
 				
-				var usuario= document.getElementsByName('usuario')[0].value;
+				prepararDatos();
+				var formulario=document.getElementById('frmIngresarSolicitud');
+				
+				formulario.submit();
+				return true;
+			}
+			
+			function prepararDatos(){
+				
+				var inc=document.getElementsByName('inc');
+				var usuario=document.getElementsByName('usuario');
+				var fecha=document.getElementsByName('fecha');
+				
+				inc[0].value=prepararInc(inc[0].value);
+				extraerUsuario(usuario[0].value);
+				fecha[0].value=establecerFecha(fecha[0].value);
+				
+				return;
+			}
+			
+			function prepararInc(inc){
+				
+				var newInc = inc.replace(/[A-Z]/ig, "");
+				
+				newInc=Number(newInc);
+				newInc=String(newInc);
+				
+				var numCeros = (13 - newInc.length);
+				
+				for (var cont = 1; cont < numCeros; cont++){
+					
+					newInc= "0" + newInc;
+				}
+				
+				newInc = "INC" + newInc;
+				
+				return newInc;
+			}
+			
+			function extraerUsuario(usuario){
+				
 				var indicadorInicio=usuario.indexOf('<');
 				var indicadorFin=usuario.indexOf('>');
 				
 				var idUsuario = usuario.slice((indicadorInicio + 1), indicadorFin);
 				var nombreUsuario = usuario.slice(0, indicadorInicio);
 				
-				var id=document.getElementsByName('idUsuario');
-				var nombre=document.getElementsByName('nombreUsuario'); 
+				document.getElementById('idUsuario').value=idUsuario.trim();
+				document.getElementById('nombreUsuario').value=nombreUsuario.trim();
+			}
+			
+			function establecerFecha(fecha){
+				
+				fecha.trim();
+				fecha=fecha.replace(". ", "");
+				fecha=fecha.replace(".", "");
+				
+				var dia=fecha.slice(0,2);
+				var mes=fecha.slice(3,5);
+				var anio=fecha.slice(6,10);
+				var hora=fecha.slice(11,13);
+				var minuto=fecha.slice(14,16);
+				var horario=fecha.slice(17,19);
+				
+				mes-=1;
+				if (horario=="pm"){
+					hora=parseInt(hora) + 12;
+				}
+				
+				var formatFecha= new Date(anio, mes, dia, hora, minuto );
+				var meses=new Array ("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+				
+				formatFecha=formatFecha.getFullYear() + "/" + meses[formatFecha.getMonth()] + "/" + formatFecha.getDate() + " " + formatFecha.getHours() + ":" + formatFecha.getMinutes();
+				
+				return formatFecha;
 			}
 		</script>
 
 	</body>
 </html>
+
+<!-- 14: tacuba abajo reloj dirección 4 caminos
+
+ricardo morales -->
